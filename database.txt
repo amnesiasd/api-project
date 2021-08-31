@@ -1,0 +1,9 @@
+CREATE USER shopping_user WITH PASSWORD 'password123';
+
+CREATE DATABASE shopping;
+\c shopping;
+GRANT ALL PRIVILEGES ON DATABASE shopping TO shopping_user;
+
+CREATE DATABASE shopping_test;
+\c shopping_test;
+GRANT ALL PRIVILEGES ON DATABASE shopping_test TO shopping_user;
