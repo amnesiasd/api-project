@@ -36,7 +36,7 @@
     "@types/qs" "*"
     "@types/serve-static" "*"
 
-"@types/jasmine@^3.6.3":
+"@types/jasmine@^3.8.2":
   version "3.8.2"
   resolved "https://registry.yarnpkg.com/@types/jasmine/-/jasmine-3.8.2.tgz#27ab0aaac29581bcbde5774e1843f90df977078e"
   integrity sha512-u5h7dqzy2XpXTzhOzSNQUQpKGFvROF8ElNX9P/TJvsHnTg/JvsAseVsGWQAQQldqanYaM+5kwxW909BBFAUYsg==
@@ -112,6 +112,11 @@ balanced-match@^1.0.0:
   version "1.0.2"
   resolved "https://registry.yarnpkg.com/balanced-match/-/balanced-match-1.0.2.tgz#e83e3a7e3f300b34cb9d87f615fa0cbf357690ee"
   integrity sha512-3oSeUO0TMV67hN1AmbXsK4yaqU7tjiHlbxRDZOpH0KW9+CeX4bRAaX0Anxt0tx2MrpRpWwQaPwIlISEJhYU5Pw==
+
+bluebird@^3.1.1:
+  version "3.7.2"
+  resolved "https://registry.yarnpkg.com/bluebird/-/bluebird-3.7.2.tgz#9f229c15be272454ffa973ace0dbee79a1b0c36f"
+  integrity sha512-XpNj6GDQzdfW+r2Wnn7xiSAd7TM3jzkxGXBGTtWKuSXv1xUV+azxAm8jdWZN06QTQk+2N2XB9jRDkvbmQmcRtg==
 
 body-parser@1.19.0, body-parser@^1.19.0:
   version "1.19.0"
@@ -219,6 +224,23 @@ cross-spawn@^7.0.3:
     shebang-command "^2.0.0"
     which "^2.0.1"
 
+db-migrate-base@^2.3.0:
+  version "2.3.1"
+  resolved "https://registry.yarnpkg.com/db-migrate-base/-/db-migrate-base-2.3.1.tgz#97029e230b344f00cf2e4475e2e6027f7b09994c"
+  integrity sha512-HewYQ3HPmy7NOWmhhMLg9TzN1StEtSqGL3w8IbBRCxEsJ+oM3bDUQ/z5fqpYKfIUK07mMXieCmZYwFpwWkSHDw==
+  dependencies:
+    bluebird "^3.1.1"
+
+db-migrate-pg@^1.2.2:
+  version "1.2.2"
+  resolved "https://registry.yarnpkg.com/db-migrate-pg/-/db-migrate-pg-1.2.2.tgz#66436dbad0ba398c05851d200f768db6b2e5bc1a"
+  integrity sha512-+rgrhGNWC2SzcfweopyZqOQ1Igz1RVFMUZwUs6SviHpOUzFwb0NZWkG0pw1GaO+JxTxS7VJjckUWkOwZbVYVag==
+  dependencies:
+    bluebird "^3.1.1"
+    db-migrate-base "^2.3.0"
+    pg "^8.0.3"
+    semver "^5.0.3"
+
 debug@2.6.9:
   version "2.6.9"
   resolved "https://registry.yarnpkg.com/debug/-/debug-2.6.9.tgz#5d128515df134ff327e90a4c93f4e077a536341f"
@@ -240,6 +262,11 @@ diff@^4.0.1:
   version "4.0.2"
   resolved "https://registry.yarnpkg.com/diff/-/diff-4.0.2.tgz#60f3aecb89d5fae520c11aa19efc2bb982aade7d"
   integrity sha512-58lmxKSA4BNyLz+HHMUzlOEpg09FV+ev6ZMe3vJihgdxzgcwZ8VoEEPmALCZG9LmqfVoNMMKpttIYTVG6uDY7A==
+
+dotenv@^10.0.0:
+  version "10.0.0"
+  resolved "https://registry.yarnpkg.com/dotenv/-/dotenv-10.0.0.tgz#3d4227b8fb95f81096cdd2b66653fb2c7085ba81"
+  integrity sha512-rlBi9d8jpv9Sf1klPjNfFAuWDjKLwTIJJ/VxtoTwIR6hnZxcEOQCZg2oIL3MWBYw5GpUDKOEnND7LXTbIpQ03Q==
 
 duplexer@~0.1.1:
   version "0.1.2"
@@ -456,7 +483,7 @@ jasmine-ts@^0.3.0:
   dependencies:
     yargs "^16.2.0"
 
-jasmine@^3.6.4:
+jasmine@^3.9.0:
   version "3.9.0"
   resolved "https://registry.yarnpkg.com/jasmine/-/jasmine-3.9.0.tgz#286c4f9f88b69defc24acf3989af5533d5c6a0e6"
   integrity sha512-JgtzteG7xnqZZ51fg7N2/wiQmXon09szkALcRMTgCMX4u/m17gVJFjObnvw5FXkZOWuweHPaPRVB6DI2uN0wVA==
@@ -610,7 +637,7 @@ pg-types@^2.1.0, pg-types@^2.2.0:
     postgres-date "~1.0.4"
     postgres-interval "^1.1.0"
 
-pg@^8.5.1:
+pg@^8.0.3, pg@^8.5.1:
   version "8.7.1"
   resolved "https://registry.yarnpkg.com/pg/-/pg-8.7.1.tgz#9ea9d1ec225980c36f94e181d009ab9f4ce4c471"
   integrity sha512-7bdYcv7V6U3KAtWjpQJJBww0UEsWuh4yQ/EjNf2HeO/NnvKjpvhEIe/A/TleP6wtmSKnUnghs5A9jUoK6iDdkA==
@@ -715,6 +742,11 @@ safe-buffer@~5.2.0:
   version "2.1.2"
   resolved "https://registry.yarnpkg.com/safer-buffer/-/safer-buffer-2.1.2.tgz#44fa161b0187b9549dd84bb91802f9bd8385cd6a"
   integrity sha512-YZo3K82SD7Riyi0E1EQPojLz7kpepnSQI9IyPbHHg1XXXevb5dJI7tpyN2ADxGcQbHG7vcyRHk0cbwqcQriUtg==
+
+semver@^5.0.3:
+  version "5.7.1"
+  resolved "https://registry.yarnpkg.com/semver/-/semver-5.7.1.tgz#a954f931aeba508d307bbf069eff0c01c96116f7"
+  integrity sha512-sauaDf/PZdVgrLTNYHRtpXa1iRiKcaebiKQ1BJdpQlWH2lCvexQdX55snPFyK7QzpudqbCI0qXFfOasHdyNDGQ==
 
 send@0.17.1:
   version "0.17.1"
