@@ -1,13 +1,13 @@
 import Client from '../database';
 
 export type User = {
-    id: Number;
+    id?: Number;
     first_name: string;
     last_name: string;
     password: string
 }
 
-export class ProductStore {
+export class UserStore {
     async index() : Promise<User[]> {
         try {
             const conn = await Client.connect();
