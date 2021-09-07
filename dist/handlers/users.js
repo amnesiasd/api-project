@@ -66,15 +66,15 @@ var show = function (_req, res) { return __awaiter(void 0, void 0, void 0, funct
         }
     });
 }); };
-var post = function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
+var post = function (_req, res) { return __awaiter(void 0, void 0, void 0, function () {
     var user, newUser, token;
     return __generator(this, function (_a) {
         switch (_a.label) {
             case 0:
                 user = {
-                    first_name: req.body.first_name,
-                    last_name: req.body.last_name,
-                    password: req.body.password
+                    first_name: _req.body.first_name,
+                    last_name: _req.body.last_name,
+                    password: _req.body.password
                 };
                 return [4 /*yield*/, store.create(user)];
             case 1:
@@ -85,13 +85,13 @@ var post = function (req, res) { return __awaiter(void 0, void 0, void 0, functi
         }
     });
 }); };
-var destroy = function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
+var destroy = function (_req, res) { return __awaiter(void 0, void 0, void 0, function () {
     var deleted, err_1;
     return __generator(this, function (_a) {
         switch (_a.label) {
             case 0:
                 _a.trys.push([0, 2, , 3]);
-                return [4 /*yield*/, store.deleteUser(req.body.id)];
+                return [4 /*yield*/, store.deleteUser(_req.params.id)];
             case 1:
                 deleted = _a.sent();
                 res.json(deleted);

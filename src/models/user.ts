@@ -12,7 +12,7 @@ export type User = {
 }
 
 export class UserStore {
-    async index() : Promise<User[]> {
+    async index(): Promise<User[]> {
         try {
             const conn = await Client.connect();
             const sql = 'SELECT * FROM users';
@@ -24,7 +24,7 @@ export class UserStore {
         }
     }
 
-    async show(id: Number) :Promise<User> {
+    async show(id: Number): Promise<User> {
         try {
             const conn = await Client.connect();
             const sql = `SELECT * FROM users WHERE id = ($1)`;
@@ -36,20 +36,21 @@ export class UserStore {
         }
     }
 
-    async create(user: User) : Promise<User> {
+    async create(user: User): Promise<User> {
         try {
             const conn = await Client.connect();
+            console.log(user.first_name);
             const sql = `INSERT INTO users (first_name, last_name, password) VALUES ($1, $2, $3) RETURNING *`;
             const hash = bcrypt.hashSync(user.password + pepper, Number(saltRounds));
             const result = await conn.query(sql, [user.first_name, user.last_name, hash]);
             conn.release();
             return result.rows[0];
-        } catch(err){
+        } catch (err) {
             throw new Error(`Could not create user with name - ${user.first_name} ${user.last_name}: Error - ${err}`);
         }
     }
-    
-    async deleteUser(id: Number) : Promise<Number> {
+
+    async deleteUser(id: string): Promise<Number> {
         try {
             const conn = await Client.connect();
             let sql = `DELETE from users where id = ($1)`;
@@ -63,7 +64,7 @@ export class UserStore {
         }
     }
 
-    async delete() : Promise<Number> {
+    async delete(): Promise<Number> {
         try {
             const conn = await Client.connect();
             let sql = `DELETE from users`;

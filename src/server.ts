@@ -1,4 +1,4 @@
-import express, { Request, Response } from 'express'
+import express from 'express'
 import routes from './routes/index';
 import user_routes from './handlers/users';
 import product_routes from './handlers/products';
@@ -9,6 +9,7 @@ const address: string = "0.0.0.0:3000";
 
 //app.use('/api', routes);
 
+app.use(express.json());
 user_routes(app);
 product_routes(app);
 order_routes(app);
