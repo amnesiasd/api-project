@@ -60,21 +60,21 @@ Steps to run app:
 
 #### Create env file with the following data:
 
-POSTGRES_HOST = 127.0.0.1/
-POSTGRES_DB = 'shopping'/
-POSTGRES_TEST_DB = 'shopping_test'/
-POSTGRES_USER = 'shopping_user'/
-POSTGRES_PASSWORD = 'password123'
-ENV = 'test'
-BCRYPT_PASSWORD='udacity'
-SALT_ROUNDS='10'
+POSTGRES_HOST = 127.0.0.1\
+POSTGRES_DB = 'shopping'\
+POSTGRES_TEST_DB = 'shopping_test'\
+POSTGRES_USER = 'shopping_user'\
+POSTGRES_PASSWORD = 'password123'\
+ENV = 'test'\
+BCRYPT_PASSWORD='udacity'\
+SALT_ROUNDS='10'\
 TOKEN_SECRET=carbs_are_life
 
 #### Set Up Database
 
-yarn dropDbTest
-yarn setUpTest
-yarn runTest
+yarn dropDbTest\
+yarn setUpTest\
+yarn runTest\
 
 #### Start in Watch
 
