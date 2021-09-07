@@ -1,13 +1,10 @@
-import express from 'express'
-import routes from './routes/index';
+import express from 'express';
 import user_routes from './handlers/users';
 import product_routes from './handlers/products';
 import order_routes from './handlers/orders';
 
 const app: express.Application = express();
 const address: string = "0.0.0.0:3000";
-
-//app.use('/api', routes);
 
 app.use(express.json());
 
@@ -17,4 +14,4 @@ order_routes(app);
 
 app.listen(3000, function () {
     console.log(`starting app on: ${address}`)
-})
+});
