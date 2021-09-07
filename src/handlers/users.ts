@@ -1,6 +1,7 @@
 import express, { Request, Response } from 'express';
 import { User, UserStore } from '../models/user';
 import jwt from 'jsonwebtoken';
+import verifyAuthToken from '../middleware/jwt_auth';
 
 const store = new UserStore();
 
@@ -38,8 +39,8 @@ const destroy = async (_req: Request, res: Response) => {
 const user_routes = (app: express.Application) => {
     app.get('/users', index);
     app.get('/users/:id', show);
-    app.post('/users', post);
-    app.delete('/users/:id', destroy);
+    app.post('/users', verifyAuthToken, post);
+    app.delete('/users/:id', verifyAuthToken, destroy);
 };
 
 export default user_routes;

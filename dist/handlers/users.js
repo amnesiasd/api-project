@@ -41,6 +41,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 exports.__esModule = true;
 var user_1 = require("../models/user");
 var jsonwebtoken_1 = __importDefault(require("jsonwebtoken"));
+var jwt_auth_1 = __importDefault(require("../middleware/jwt_auth"));
 var store = new user_1.UserStore();
 var index = function (_req, res) { return __awaiter(void 0, void 0, void 0, function () {
     var users;
@@ -108,7 +109,7 @@ var destroy = function (_req, res) { return __awaiter(void 0, void 0, void 0, fu
 var user_routes = function (app) {
     app.get('/users', index);
     app.get('/users/:id', show);
-    app.post('/users', post);
-    app["delete"]('/users/:id', destroy);
+    app.post('/users', jwt_auth_1["default"], post);
+    app["delete"]('/users/:id', jwt_auth_1["default"], destroy);
 };
 exports["default"] = user_routes;

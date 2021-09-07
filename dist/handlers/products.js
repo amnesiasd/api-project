@@ -40,19 +40,8 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 exports.__esModule = true;
 var product_1 = require("../models/product");
-var jsonwebtoken_1 = __importDefault(require("jsonwebtoken"));
+var jwt_auth_1 = __importDefault(require("../middleware/jwt_auth"));
 var store = new product_1.ProductStore();
-var verifyAuthToken = function (req, res, next) {
-    try {
-        var authorizationHeader = req.headers.authorization || '';
-        var token = authorizationHeader.split(' ')[1];
-        var decoded = jsonwebtoken_1["default"].verify(token, process.env.TOKEN_SECRET);
-        next();
-    }
-    catch (error) {
-        res.status(401);
-    }
-};
 var index = function (_req, res) { return __awaiter(void 0, void 0, void 0, function () {
     var users;
     return __generator(this, function (_a) {
@@ -117,7 +106,7 @@ var destroy = function (req, res) { return __awaiter(void 0, void 0, void 0, fun
 var product_routes = function (app) {
     app.get('/products', index);
     app.get('/products/:id', show);
-    app.post('/products', verifyAuthToken, post);
-    app["delete"]('/products/:id', verifyAuthToken, destroy);
+    app.post('/products', jwt_auth_1["default"], post);
+    app["delete"]('/products/:id', jwt_auth_1["default"], destroy);
 };
 exports["default"] = product_routes;

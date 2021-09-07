@@ -1,20 +1,8 @@
 import express, {Request, Response} from 'express';
 import { Product, ProductStore } from '../models/product';
-import jwt from 'jsonwebtoken';
+import verifyAuthToken from '../middleware/jwt_auth';
 
 const store = new ProductStore();
-
-const verifyAuthToken = (req: Request, res: Response, next: Function) => {
-    try {
-        const authorizationHeader = req.headers.authorization || '';
-        const token = authorizationHeader.split(' ')[1]
-        const decoded = jwt.verify(token, process.env.TOKEN_SECRET as string)
-
-        next()
-    } catch (error) {
-        res.status(401)
-    }
-}
 
 const index = async(_req: Request, res: Response) => {
     const users = await store.index();
