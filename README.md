@@ -12,6 +12,10 @@ CREATE DATABASE shopping_test;\
 \c shopping_test;\
 GRANT ALL PRIVILEGES ON DATABASE shopping_test TO shopping_user;\
 
+### DB Model
+
+![StoreFront DB Model](https://user-images.githubusercontent.com/14042720/132398146-549e3942-194a-455c-b625-99254e5b2c4e.png)
+
 #### Create env file with the following data:
 
 POSTGRES_HOST = 127.0.0.1\
