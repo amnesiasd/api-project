@@ -1,12 +1,12 @@
 CREATE TABLE order_status(
     id SERIAL PRIMARY KEY,
-    desc VARCHAR(30)
+    dbstatus VARCHAR(30)
 );
 
 CREATE TABLE orders(
     id SERIAL PRIMARY KEY,
     user_id INTEGER,
-    status INTEGER
+    dbstatus INTEGER
 );
 
 CREATE TABLE order_details(
@@ -16,7 +16,7 @@ CREATE TABLE order_details(
     PRIMARY KEY (order_id, prod_id)
 );
 
-ALTER TABLE orders ADD FOREIGN KEY (status) REFERENCES order_status(id);
+ALTER TABLE orders ADD FOREIGN KEY (dbstatus) REFERENCES order_status(id);
 ALTER TABLE orders ADD FOREIGN KEY (user_id) REFERENCES users(id);
 ALTER TABLE order_details ADD FOREIGN KEY (order_id) REFERENCES orders(id);
 ALTER TABLE order_details ADD FOREIGN KEY (prod_id) REFERENCES products(id);

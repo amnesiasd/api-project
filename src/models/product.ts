@@ -19,7 +19,7 @@ export class ProductStore {
         }
     }
 
-    async show(id: Number) :Promise<Product> {
+    async show(id: String) :Promise<Product> {
         try {
             const conn = await Client.connect();
             const sql = `SELECT * FROM products WHERE id = ($1)`;
@@ -40,6 +40,34 @@ export class ProductStore {
             return result.rows[0];
         } catch(err){
             throw new Error(`Could not create product with name - ${product.name}: Error - ${err}`);
+        }
+    };
+
+    async deleteProduct(id: String) : Promise<Number> {
+        try {
+            const conn = await Client.connect();
+            let sql = `DELETE from products where id = ($1)`;
+            let result = await conn.query(sql, [id]);
+            sql = `SELECT COUNT(*) from products`;
+            const newResult = await conn.query(sql);
+            conn.release();
+            return newResult.rowCount;
+        } catch (err) {
+            throw new Error(`Cannot delete product with id = ${id}. ${err}`);
+        }
+    }
+
+    async delete() : Promise<Number> {
+        try {
+            const conn = await Client.connect();
+            let sql = `DELETE from products`;
+            let result = await conn.query(sql);
+            sql = `SELECT COUNT(*) from products`;
+            const newResult = await conn.query(sql);
+            conn.release();
+            return newResult.rowCount;
+        } catch (err) {
+            throw new Error(`Cannot delete products ${err}`);
         }
     }
 }
