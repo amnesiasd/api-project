@@ -9,7 +9,6 @@ var products_1 = __importDefault(require("./handlers/products"));
 var orders_1 = __importDefault(require("./handlers/orders"));
 var app = (0, express_1["default"])();
 var address = "0.0.0.0:3000";
-//app.use('/api', routes);
 app.use(express_1["default"].json());
 (0, users_1["default"])(app);
 (0, products_1["default"])(app);
