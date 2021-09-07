@@ -105,7 +105,6 @@ var UserStore = /** @class */ (function () {
                         return [4 /*yield*/, database_1["default"].connect()];
                     case 1:
                         conn = _a.sent();
-                        console.log(user.first_name);
                         sql = "INSERT INTO users (first_name, last_name, password) VALUES ($1, $2, $3) RETURNING *";
                         hash = bcrypt_1["default"].hashSync(user.password + pepper, Number(saltRounds));
                         return [4 /*yield*/, conn.query(sql, [user.first_name, user.last_name, hash])];

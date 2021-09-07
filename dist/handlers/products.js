@@ -35,9 +35,24 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
         if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
     }
 };
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 exports.__esModule = true;
 var product_1 = require("../models/product");
+var jsonwebtoken_1 = __importDefault(require("jsonwebtoken"));
 var store = new product_1.ProductStore();
+var verifyAuthToken = function (req, res, next) {
+    try {
+        var authorizationHeader = req.headers.authorization || '';
+        var token = authorizationHeader.split(' ')[1];
+        var decoded = jsonwebtoken_1["default"].verify(token, process.env.TOKEN_SECRET);
+        next();
+    }
+    catch (error) {
+        res.status(401);
+    }
+};
 var index = function (_req, res) { return __awaiter(void 0, void 0, void 0, function () {
     var users;
     return __generator(this, function (_a) {
@@ -102,7 +117,7 @@ var destroy = function (req, res) { return __awaiter(void 0, void 0, void 0, fun
 var product_routes = function (app) {
     app.get('/products', index);
     app.get('/products/:id', show);
-    app.post('/products', post);
-    app["delete"]('/products/:id', destroy);
+    app.post('/products', verifyAuthToken, post);
+    app["delete"]('/products/:id', verifyAuthToken, destroy);
 };
 exports["default"] = product_routes;
