@@ -10,6 +10,7 @@ const address: string = "0.0.0.0:3000";
 //app.use('/api', routes);
 
 app.use(express.json());
+
 user_routes(app);
 product_routes(app);
 order_routes(app);
