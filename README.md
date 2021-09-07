@@ -56,7 +56,7 @@ Before submitting, make sure that your project is complete with a `README.md`. Y
 
 Before submitting your project, spin it up and test each endpoint. If each one responds with data that matches the data shapes from the `REQUIREMENTS.md`, it is ready for submission!
 
-Steps to run app:
+### Steps to run app:
 
 #### Create env file with the following data:
 
@@ -74,7 +74,7 @@ TOKEN_SECRET=carbs_are_life
 
 yarn dropDbTest\
 yarn setUpTest\
-yarn runTest\
+yarn runTest
 
 #### Start in Watch
 
