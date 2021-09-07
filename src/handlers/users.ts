@@ -11,7 +11,7 @@ const index = async (_req: Request, res: Response) => {
 };
 
 const show = async (_req: Request, res: Response) => {
-    const user = await store.show(_req.body.id);
+    const user = await store.show(_req.params.id);
     res.json(user);
 };
 

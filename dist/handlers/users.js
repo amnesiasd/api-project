@@ -59,7 +59,7 @@ var show = function (_req, res) { return __awaiter(void 0, void 0, void 0, funct
     var user;
     return __generator(this, function (_a) {
         switch (_a.label) {
-            case 0: return [4 /*yield*/, store.show(_req.body.id)];
+            case 0: return [4 /*yield*/, store.show(_req.params.id)];
             case 1:
                 user = _a.sent();
                 res.json(user);
