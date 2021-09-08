@@ -14,7 +14,7 @@ GRANT ALL PRIVILEGES ON DATABASE shopping_test TO shopping_user;\
 
 ### DB Model
 
-![StoreFront DB Model](https://user-images.githubusercontent.com/14042720/132398146-549e3942-194a-455c-b625-99254e5b2c4e.png)
+![StoreFront DB Model](https://user-images.githubusercontent.com/14042720/132509495-ed664ee5-782d-4ce3-ae38-c0b4ca34b924.png)
 
 #### Create env file with the following data:
 
