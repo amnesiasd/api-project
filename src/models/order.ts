@@ -30,13 +30,12 @@ export class OrderStatusStore {
         }
     }
 
-    async create(desc: string) : Promise<OrderDetails> {
+    async create(desc: string) : Promise<OrderStatus> {
         try {
             const conn = await Client.connect();
             const sql = `INSERT INTO order_status(dbstatus) VALUES ($1) RETURNING *`;
             const result = await conn.query(sql, [desc]);
             conn.release();
-            console.log(result.rows[0]);
             return result.rows[0];
         } catch (err) {
             throw new Error(`Cannot create order status ${err}`);
@@ -53,7 +52,7 @@ export class OrderStatusStore {
             conn.release();
             return newResult.rowCount;
         } catch (err) {
-            throw new Error(`Cannot create order details ${err}`);
+            throw new Error(`Cannot delete order status ${err}`);
         }
     }
 }

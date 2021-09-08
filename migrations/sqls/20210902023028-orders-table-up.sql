@@ -9,7 +9,7 @@ CREATE TABLE orders(
     dbstatus INTEGER
 );
 
-CREATE TABLE order_details(
+CREATE TABLE order_products(
     order_id INTEGER,
     prod_id INTEGER,
     quantity INTEGER,
@@ -18,5 +18,5 @@ CREATE TABLE order_details(
 
 ALTER TABLE orders ADD FOREIGN KEY (dbstatus) REFERENCES order_status(id);
 ALTER TABLE orders ADD FOREIGN KEY (user_id) REFERENCES users(id);
-ALTER TABLE order_details ADD FOREIGN KEY (order_id) REFERENCES orders(id);
-ALTER TABLE order_details ADD FOREIGN KEY (prod_id) REFERENCES products(id);
+ALTER TABLE order_products ADD FOREIGN KEY (order_id) REFERENCES orders(id);
+ALTER TABLE order_products ADD FOREIGN KEY (prod_id) REFERENCES products(id);
