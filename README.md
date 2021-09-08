@@ -37,3 +37,19 @@ yarn runTest
 #### Start in Watch
 
 yarn watch
+
+#### Products
+
+- Index GET '/products', index;
+- Show GET '/products/:id', show
+- Create [token required] POST '/products', post
+
+#### Users
+
+- Index [token required] GET '/users/, index
+- Show [token required] GET '/users/:id', show
+- Create [token required] POST '/users', post
+
+#### Orders
+
+- Current Order by user (args: user id)[token required]

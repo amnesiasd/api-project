@@ -1,5 +1,6 @@
 import express, {Request, Response} from 'express';
-import { Order, OrderStore } from '../models/order';
+import { Order, OrderStore, UserOrders } from '../models/order';
+import { User } from '../models/user';
 
 const store = new OrderStore();
 
@@ -32,11 +33,21 @@ const destroy = async (req: Request, res: Response) => {
     }
 }
 
+const showUserOrders = async (_req: Request, res: Response) => {
+    try {
+        const orders: UserOrders[] = await store.showUserOrders(_req.params.id);
+        res.json(orders);
+    } catch(err) {
+        res.json(err);
+    }
+}
+
 const order_routes = (app: express.Application) => {
     app.get('/orders', index);
     app.get('/orders/:id', show);
     app.post('/orders', post);
     app.delete('/orders/:id', destroy);
+    app.get('/showUserOrders/:id', showUserOrders);
 };
 
 export default order_routes;

@@ -1,4 +1,5 @@
 import Client from '../database';
+import { Product, ProductStore } from './product';
 
 export type Order = {
     id?: Number;
@@ -15,6 +16,14 @@ export type OrderDetails = {
     order_id: Number;
     prod_id: Number;
     quantity: Number;
+}
+
+export type UserOrders = {
+    user_id: Number;
+    order_id: Number;
+    product: string;
+    quantity: Number;
+    status: String;
 }
 
 export class OrderStatusStore {
@@ -81,6 +90,28 @@ export class OrderStore {
             throw new Error(`Cannot get orders ${err}`);
         }
     };
+
+    async showUserOrders(userId: string) : Promise<UserOrders[]> {
+        try {
+            const conn = await Client.connect();
+            let sql = `SELECT u.id, o.id, p.name, op.quantity, os.dbstatus
+            FROM users u
+            left join orders o
+            on o.user_id = u.id
+            left join orderstatus os
+            on os.id = o.dbstatus
+            left join order_products op
+            on op.order_id = o.id
+            left join products p
+            on p.id = op.prod_id
+            where u.id = ($1);`;
+            const result = await conn.query(sql, [userId]);
+            conn.release();
+            return result.rows;
+        } catch(err) {
+            throw new Error(`Cannot retrieve order for ${userId} - ${err}`);
+        }
+    }
 
     async create(order: Order) : Promise<Order> {
         try {
