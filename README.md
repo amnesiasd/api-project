@@ -1,4 +1,4 @@
-# Storefront Backend Project
+## Storefront Backend Project
 
 ### Steps to run app:
 
