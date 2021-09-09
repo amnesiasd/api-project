@@ -53,3 +53,7 @@ yarn watch
 #### Orders
 
 - Current Order by user (args: user id)[token required] GET /showUserOrders/:id, showUserOrders
+
+#### If using PostMan, use UdacityApi json file to import into Postman
+
+- UdacityApi.postman_collection.json
