@@ -38,6 +38,7 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
 exports.__esModule = true;
 var order_1 = require("../models/order");
 var store = new order_1.OrderStore();
+var statusStore = new order_1.OrderStatusStore();
 var index = function (_req, res) { return __awaiter(void 0, void 0, void 0, function () {
     var orders;
     return __generator(this, function (_a) {
@@ -55,6 +56,18 @@ var show = function (_req, res) { return __awaiter(void 0, void 0, void 0, funct
     return __generator(this, function (_a) {
         switch (_a.label) {
             case 0: return [4 /*yield*/, store.show(_req.params.id)];
+            case 1:
+                order = _a.sent();
+                res.json(order);
+                return [2 /*return*/];
+        }
+    });
+}); };
+var createOrderStatus = function (_req, res) { return __awaiter(void 0, void 0, void 0, function () {
+    var order;
+    return __generator(this, function (_a) {
+        switch (_a.label) {
+            case 0: return [4 /*yield*/, statusStore.createOrderStatus(_req.body.status)];
             case 1:
                 order = _a.sent();
                 res.json(order);
@@ -118,11 +131,37 @@ var showUserOrders = function (_req, res) { return __awaiter(void 0, void 0, voi
         }
     });
 }); };
+var createOrder = function (_req, res) { return __awaiter(void 0, void 0, void 0, function () {
+    var order, orders, err_3;
+    return __generator(this, function (_a) {
+        switch (_a.label) {
+            case 0:
+                _a.trys.push([0, 2, , 3]);
+                order = {
+                    order_id: _req.body.order_id,
+                    prod_id: _req.body.prod_id,
+                    quantity: _req.body.quantity
+                };
+                return [4 /*yield*/, store.createUserOrder(order)];
+            case 1:
+                orders = _a.sent();
+                res.json(orders);
+                return [3 /*break*/, 3];
+            case 2:
+                err_3 = _a.sent();
+                res.json(err_3);
+                return [3 /*break*/, 3];
+            case 3: return [2 /*return*/];
+        }
+    });
+}); };
 var order_routes = function (app) {
     app.get('/orders', index);
     app.get('/orders/:id', show);
     app.post('/orders', post);
     app["delete"]('/orders/:id', destroy);
     app.get('/showUserOrders/:id', showUserOrders);
+    app.post('/addToOrder', createOrder);
+    app.post('/createStatus', createOrderStatus);
 };
 exports["default"] = order_routes;

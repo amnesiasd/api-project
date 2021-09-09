@@ -68,7 +68,7 @@ var OrderStatusStore = /** @class */ (function () {
             });
         });
     };
-    OrderStatusStore.prototype.create = function (desc) {
+    OrderStatusStore.prototype.createOrderStatus = function (desc) {
         return __awaiter(this, void 0, void 0, function () {
             var conn, sql, result, err_2;
             return __generator(this, function (_a) {
@@ -186,7 +186,7 @@ var OrderStore = /** @class */ (function () {
                         return [4 /*yield*/, database_1["default"].connect()];
                     case 1:
                         conn = _a.sent();
-                        sql = "SELECT u.id, o.id, p.name, op.quantity, os.dbstatus\n            FROM users u\n            left join orders o\n            on o.user_id = u.id\n            left join orderstatus os\n            on os.id = o.dbstatus\n            left join order_products op\n            on op.order_id = o.id\n            left join products p\n            on p.id = op.prod_id\n            where u.id = ($1);";
+                        sql = "SELECT o.user_id, o.id, p.name, op.quantity, o.dbstatus\n            FROM users u   \n            join orders o\n            on o.user_id = u.id \n            join order_status os\n            on os.id = o.dbstatus\n            join order_products op\n            on op.order_id = o.id\n            join products p\n            on p.id = op.prod_id       \n            where u.id = ($1);";
                         return [4 /*yield*/, conn.query(sql, [userId])];
                     case 2:
                         result = _a.sent();
@@ -224,9 +224,33 @@ var OrderStore = /** @class */ (function () {
             });
         });
     };
+    OrderStore.prototype.createUserOrder = function (order) {
+        return __awaiter(this, void 0, void 0, function () {
+            var conn, sql, result, err_8;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0:
+                        _a.trys.push([0, 3, , 4]);
+                        return [4 /*yield*/, database_1["default"].connect()];
+                    case 1:
+                        conn = _a.sent();
+                        sql = "INSERT INTO order_products (order_id, prod_id, quantity) VALUES ($1, $2, $3) RETURNING *";
+                        return [4 /*yield*/, conn.query(sql, [order.order_id, order.prod_id, order.quantity])];
+                    case 2:
+                        result = _a.sent();
+                        conn.release();
+                        return [2 /*return*/, result.rows[0]];
+                    case 3:
+                        err_8 = _a.sent();
+                        throw new Error("Could not create order for " + order.order_id + ": Error - " + err_8);
+                    case 4: return [2 /*return*/];
+                }
+            });
+        });
+    };
     OrderStore.prototype.deleteOrder = function (id) {
         return __awaiter(this, void 0, void 0, function () {
-            var conn, sql, result, newResult, err_8;
+            var conn, sql, result, newResult, err_9;
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
@@ -245,8 +269,8 @@ var OrderStore = /** @class */ (function () {
                         conn.release();
                         return [2 /*return*/, newResult.rowCount];
                     case 4:
-                        err_8 = _a.sent();
-                        throw new Error("Cannot delete order with id=" + id + ". " + err_8);
+                        err_9 = _a.sent();
+                        throw new Error("Cannot delete order with id=" + id + ". " + err_9);
                     case 5: return [2 /*return*/];
                 }
             });
@@ -254,7 +278,7 @@ var OrderStore = /** @class */ (function () {
     };
     OrderStore.prototype["delete"] = function () {
         return __awaiter(this, void 0, void 0, function () {
-            var conn, sql, result, newResult, err_9;
+            var conn, sql, result, newResult, err_10;
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
@@ -273,8 +297,8 @@ var OrderStore = /** @class */ (function () {
                         conn.release();
                         return [2 /*return*/, newResult.rowCount];
                     case 4:
-                        err_9 = _a.sent();
-                        throw new Error("Cannot delete orders " + err_9);
+                        err_10 = _a.sent();
+                        throw new Error("Cannot delete orders " + err_10);
                     case 5: return [2 /*return*/];
                 }
             });

@@ -18,7 +18,7 @@ export type OrderDetails = {
     quantity: Number;
 }
 
-export type UserOrders = {
+export type UserOrder = {
     user_id: Number;
     order_id: Number;
     product: string;
@@ -39,7 +39,7 @@ export class OrderStatusStore {
         }
     }
 
-    async create(desc: string) : Promise<OrderStatus> {
+    async createOrderStatus(desc: string) : Promise<OrderStatus> {
         try {
             const conn = await Client.connect();
             const sql = `INSERT INTO order_status(dbstatus) VALUES ($1) RETURNING *`;
@@ -91,19 +91,19 @@ export class OrderStore {
         }
     };
 
-    async showUserOrders(userId: string) : Promise<UserOrders[]> {
+    async showUserOrders(userId: string) : Promise<UserOrder[]> {
         try {
             const conn = await Client.connect();
-            let sql = `SELECT u.id, o.id, p.name, op.quantity, os.dbstatus
-            FROM users u
-            left join orders o
-            on o.user_id = u.id
-            left join orderstatus os
+            let sql = `SELECT o.user_id, o.id, p.name, op.quantity, o.dbstatus
+            FROM users u   
+            join orders o
+            on o.user_id = u.id 
+            join order_status os
             on os.id = o.dbstatus
-            left join order_products op
+            join order_products op
             on op.order_id = o.id
-            left join products p
-            on p.id = op.prod_id
+            join products p
+            on p.id = op.prod_id       
             where u.id = ($1);`;
             const result = await conn.query(sql, [userId]);
             conn.release();
@@ -122,6 +122,18 @@ export class OrderStore {
             return result.rows[0];
         } catch(err){
             throw new Error(`Could not create order for ${order.user_id}: Error - ${err}`);
+        }
+    }
+
+    async createUserOrder(order: OrderDetails) : Promise<OrderDetails> {
+        try {
+            const conn = await Client.connect();
+            const sql = `INSERT INTO order_products (order_id, prod_id, quantity) VALUES ($1, $2, $3) RETURNING *`;
+            const result = await conn.query(sql, [order.order_id, order.prod_id, order.quantity]);
+            conn.release();
+            return result.rows[0];
+        } catch(err){
+            throw new Error(`Could not create order for ${order.order_id}: Error - ${err}`);
         }
     }
 
