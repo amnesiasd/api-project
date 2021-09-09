@@ -28,6 +28,8 @@ These are the notes from a meeting with the frontend developer that describe wha
 
 ## Data Shapes
 
+![StoreFront Data Shapes](https://user-images.githubusercontent.com/14042720/132752238-2c845d20-4eca-435d-b619-ed01b1fd3c5e.png)
+
 ### DB Model
 
 ![StoreFront DB Model](https://user-images.githubusercontent.com/14042720/132509495-ed664ee5-782d-4ce3-ae38-c0b4ca34b924.png)
