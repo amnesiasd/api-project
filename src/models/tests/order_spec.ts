@@ -1,4 +1,4 @@
-import { Order, OrderDetails, OrderStatus, OrderStore, OrderStatusStore } from "../order";
+import { Order, OrderDetails, OrderStatus, OrderStore, OrderStatusStore, UserOrder } from "../order";
 import { User, UserStore } from "../user";
 import { Product, ProductStore } from "../product";
 
@@ -8,35 +8,50 @@ describe("Order Model", () => {
     beforeAll(function(){
         const userStore = new UserStore();
         const user: User = {
-        first_name: 'Troy',
+        first_name: 'Jude',
         last_name: 'H',
         password: 'password123'
         };
         userStore.create(user);
         const prodStore = new ProductStore();
-        const newProd:Product = {
+        let newProd:Product = {
             name: "JumpRope",
             price: 21.99
         }
         prodStore.create(newProd);
+        newProd = {
+            name: "DumbBell",
+            price: 37.95
+        }
+        prodStore.create(newProd);
         const status = new OrderStatusStore();
         const store = new OrderStore();
-        status.create("Active");
-        status.create("Completed");
+        status.createOrderStatus("Active");
+        status.createOrderStatus("Completed");
         const order: Order = {
             user_id: 1,
             dbstatus: 1
         };
         store.create(order);
+        let userOrder : OrderDetails = {
+            order_id: 1,
+            prod_id: 1,
+            quantity: 2
+        };
+        store.createUserOrder(userOrder);
+        userOrder = {
+            order_id: 1,
+            prod_id: 2,
+            quantity: 1
+        };
+        store.createUserOrder(userOrder);
     })
     it('should have an index method', () => {
         expect(store.index).toBeDefined();
     });
 
     it('create method should return a successful order', async () => {        
-        //create sql to get id of Active row from order_status
-        
-        const order: Order = {
+            const order: Order = {
             user_id: 1,
             dbstatus: 1
         };

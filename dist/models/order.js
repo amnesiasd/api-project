@@ -186,7 +186,7 @@ var OrderStore = /** @class */ (function () {
                         return [4 /*yield*/, database_1["default"].connect()];
                     case 1:
                         conn = _a.sent();
-                        sql = "SELECT o.user_id, o.id, p.name, op.quantity, o.dbstatus\n            FROM users u   \n            join orders o\n            on o.user_id = u.id \n            join order_status os\n            on os.id = o.dbstatus\n            join order_products op\n            on op.order_id = o.id\n            join products p\n            on p.id = op.prod_id       \n            where u.id = ($1);";
+                        sql = "SELECT o.user_id, o.id, p.name, op.quantity, os.dbstatus\n            FROM users u   \n            join orders o\n            on o.user_id = u.id \n            join order_status os\n            on os.id = o.dbstatus\n            join order_products op\n            on op.order_id = o.id\n            join products p\n            on p.id = op.prod_id       \n            where u.id = ($1);";
                         return [4 /*yield*/, conn.query(sql, [userId])];
                     case 2:
                         result = _a.sent();

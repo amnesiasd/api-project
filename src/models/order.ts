@@ -94,7 +94,7 @@ export class OrderStore {
     async showUserOrders(userId: string) : Promise<UserOrder[]> {
         try {
             const conn = await Client.connect();
-            let sql = `SELECT o.user_id, o.id, p.name, op.quantity, o.dbstatus
+            let sql = `SELECT o.user_id, o.id, p.name, op.quantity, os.dbstatus
             FROM users u   
             join orders o
             on o.user_id = u.id 

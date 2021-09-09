@@ -52,4 +52,4 @@ yarn watch
 
 #### Orders
 
-- Current Order by user (args: user id)[token required]
+- Current Order by user (args: user id)[token required] GET /showUserOrders/:id, showUserOrders
