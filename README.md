@@ -12,10 +12,6 @@ CREATE DATABASE shopping_test;\
 \c shopping_test;\
 GRANT ALL PRIVILEGES ON DATABASE shopping_test TO shopping_user;\
 
-### DB Model
-
-![StoreFront DB Model](https://user-images.githubusercontent.com/14042720/132509495-ed664ee5-782d-4ce3-ae38-c0b4ca34b924.png)
-
 #### Create env file with the following data:
 
 POSTGRES_HOST = 127.0.0.1\
@@ -37,23 +33,3 @@ yarn runTest
 #### Start in Watch
 
 yarn watch
-
-#### Products
-
-- Index GET '/products', index;
-- Show GET '/products/:id', show
-- Create [token required] POST '/products', post
-
-#### Users
-
-- Index [token required] GET '/users/, index
-- Show [token required] GET '/users/:id', show
-- Create [token required] POST '/users', post
-
-#### Orders
-
-- Current Order by user (args: user id)[token required] GET /showUserOrders/:id, showUserOrders
-
-#### If using PostMan, use UdacityApi json file to import into Postman
-
-- UdacityApi.postman_collection.json
