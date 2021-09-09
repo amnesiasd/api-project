@@ -35,7 +35,11 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
         if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
     }
 };
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 exports.__esModule = true;
+var jwt_auth_1 = __importDefault(require("../middleware/jwt_auth"));
 var order_1 = require("../models/order");
 var store = new order_1.OrderStore();
 var statusStore = new order_1.OrderStatusStore();
@@ -160,7 +164,7 @@ var order_routes = function (app) {
     app.get('/orders/:id', show);
     app.post('/orders', post);
     app["delete"]('/orders/:id', destroy);
-    app.get('/showUserOrders/:id', showUserOrders);
+    app.get('/showUserOrders/:id', jwt_auth_1["default"], showUserOrders);
     app.post('/addToOrder', createOrder);
     app.post('/createStatus', createOrderStatus);
 };

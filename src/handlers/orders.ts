@@ -1,4 +1,5 @@
 import express, {Request, Response} from 'express';
+import verifyAuthToken from '../middleware/jwt_auth';
 import { Order, OrderDetails, OrderStatusStore, OrderStore, UserOrder } from '../models/order';
 import { User } from '../models/user';
 
@@ -67,7 +68,7 @@ const order_routes = (app: express.Application) => {
     app.get('/orders/:id', show);
     app.post('/orders', post);
     app.delete('/orders/:id', destroy);
-    app.get('/showUserOrders/:id', showUserOrders);
+    app.get('/showUserOrders/:id',verifyAuthToken, showUserOrders);
     app.post('/addToOrder', createOrder)
     app.post('/createStatus', createOrderStatus)
 };
