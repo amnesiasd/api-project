@@ -109,7 +109,7 @@ var destroy = function (_req, res) { return __awaiter(void 0, void 0, void 0, fu
 var user_routes = function (app) {
     app.get('/users', jwt_auth_1["default"], index);
     app.get('/users/:id', jwt_auth_1["default"], show);
-    app.post('/users', jwt_auth_1["default"], post);
+    app.post('/users', post);
     app["delete"]('/users/:id', jwt_auth_1["default"], destroy);
 };
 exports["default"] = user_routes;

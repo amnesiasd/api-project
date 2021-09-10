@@ -13,6 +13,7 @@ app.use(express_1["default"].json());
 (0, users_1["default"])(app);
 (0, products_1["default"])(app);
 (0, orders_1["default"])(app);
-app.listen(3000, function () {
+var server = app.listen(3000, function () {
     console.log("starting app on: " + address);
 });
+module.exports = server;

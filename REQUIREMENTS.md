@@ -22,10 +22,6 @@ These are the notes from a meeting with the frontend developer that describe wha
 
 - Current Order by user (args: user id)[token required] GET /showUserOrders/:id, showUserOrders
 
-#### If using PostMan, use UdacityApi json file to import into Postman
-
-- UdacityApi.postman_collection.json
-
 ## Data Shapes
 
 ![StoreFront Data Shapes](https://user-images.githubusercontent.com/14042720/132752238-2c845d20-4eca-435d-b619-ed01b1fd3c5e.png)
