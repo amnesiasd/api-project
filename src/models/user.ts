@@ -62,19 +62,5 @@ export class UserStore {
             throw new Error(`Cannot delete users ${err}`);
         }
     }
-
-    async delete(): Promise<Number> {
-        try {
-            const conn = await Client.connect();
-            let sql = `DELETE from users`;
-            let result = await conn.query(sql);
-            sql = `SELECT COUNT(*) from users`;
-            const newResult = await conn.query(sql);
-            conn.release();
-            return newResult.rowCount;
-        } catch (err) {
-            throw new Error(`Cannot delete users ${err}`);
-        }
-    }
 }
 
