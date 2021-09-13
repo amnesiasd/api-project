@@ -55,20 +55,6 @@ export class ProductStore {
         } catch (err) {
             throw new Error(`Cannot delete product with id = ${id}. ${err}`);
         }
-    }
-
-    async delete() : Promise<Number> {
-        try {
-            const conn = await Client.connect();
-            let sql = `DELETE from products`;
-            let result = await conn.query(sql);
-            sql = `SELECT COUNT(*) from products`;
-            const newResult = await conn.query(sql);
-            conn.release();
-            return newResult.rowCount;
-        } catch (err) {
-            throw new Error(`Cannot delete products ${err}`);
-        }
-    }
+    };
 }
 
